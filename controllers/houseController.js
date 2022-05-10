@@ -2,8 +2,18 @@ const House = require("../model/houseSchema")
 
 
 //get all houses
-const getHouse = (req, res)=>{
-    res.status(200).json({success:true, data:houses})
+// const getHouse = (req, res)=>{
+//     res.status(200).json({success:true, data:houses})
+// }
+
+const getHouse= async(req, res)=>{
+    try{
+        let allHouses = await House.find({});
+        res.status(200).json({success:true, body:allHouses});
+    }catch(error){
+        res.status(500).json({success:false, body:error});
+    }
+
 }
 
 
